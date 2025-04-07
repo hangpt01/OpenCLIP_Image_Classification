@@ -2,9 +2,9 @@ conda create -n open_clip python=3.8
 conda activate open_clip
 pip install open_clip_torch
 pip install ftfy regex tqdm
-CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/models/cifar10_zero_shot.py
-CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/models/cifar10_zero_shot_batch.py
-CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/models/cifar10_linear_probe.py
-CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/models/cifar10_linear_probe_gpu.py
-CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/models/cifar10_linear_probe_sweep.py
-CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/models/cifar10_zero_shot_batch_prompt_engineering.py
+CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/model/cifar10_zero_shot.py
+CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/model/cifar10_zero_shot_batch.py
+CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/model/cifar10_linear_probe.py
+CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/model/cifar10_linear_probe_gpu.py
+CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/model/cifar10_linear_probe_sweep.py
+CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/model/cifar10_zero_shot_batch_prompt_engineering.py
