@@ -26,6 +26,7 @@ tokenizer = open_clip.get_tokenizer('ViT-B-32')
 
 # Download the CIFAR-10 test dataset
 cifar10 = CIFAR10(root=os.path.expanduser("data"), download=True, train=False, transform=preprocess)
+batch_size = 1024
 
 # Prepare text inputs (text descriptions for the CIFAR-10 classes)
 text_inputs = torch.cat([tokenizer(f"a photo of a {c}") for c in cifar10.classes]).to(device)
@@ -39,7 +40,7 @@ total = len(cifar10)
 
 # Loop through all the test samples in batches
 with torch.no_grad():
-    for images, labels in tqdm(DataLoader(cifar10, batch_size=1024)):
+    for images, labels in tqdm(DataLoader(cifar10, batch_size=batch_size)):
         image_features = model.encode_image(images.to(device))
         image_features /= image_features.norm(dim=-1, keepdim=True)  # Normalize
 

@@ -23,13 +23,14 @@ test = CIFAR10(root, download=True, train=False, transform=preprocess)
 train_size = int(0.8 * len(train))  # 80% for training
 val_size = len(train) - train_size  # 20% for validation
 train_data, val_data = random_split(train, [train_size, val_size])
+batch_size = 1024
 
 def get_features(dataset):
     all_features = []
     all_labels = []
     
     with torch.no_grad():
-        for images, labels in tqdm(DataLoader(dataset, batch_size=2048)):
+        for images, labels in tqdm(DataLoader(dataset, batch_size=batch_size)):
             features = model.encode_image(images.to(device))
             all_features.append(features)
             all_labels.append(labels)
