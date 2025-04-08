@@ -16,7 +16,7 @@ tokenizer = open_clip.get_tokenizer('ViT-B-32')
 
 # Download the CIFAR-10 test dataset
 cifar10 = CIFAR10(root=os.path.expanduser("data"), download=True, train=False, transform=preprocess)
-batch_size = 1024
+batch_size = 2048
 
 # Define multiple variations of text descriptions for CIFAR-10 classes
 text_variations = [

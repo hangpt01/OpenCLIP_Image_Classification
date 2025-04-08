@@ -21,7 +21,7 @@ tokenizer = open_clip.get_tokenizer('ViT-B-32')
 root = os.path.expanduser("data")
 train = CIFAR10(root, download=False, train=True, transform=preprocess)
 test = CIFAR10(root, download=False, train=False, transform=preprocess)
-batch_size = 1024
+batch_size = 2048
 
 def get_features(dataset):
     all_features = []
