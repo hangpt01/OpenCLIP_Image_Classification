@@ -48,47 +48,55 @@ pip install -r requirements.txt
 
 #### Jupyter Notebook
 
-To run the Jupyter notebook (CLIP_CIFAR10_Project.ipynb), simply execute:
+Running the notebook (`CLIP_CIFAR10_Project.ipynb`) requires approximately **11GB of GPU memory**. To reduce GPU usage, you can modify the `batch_size` parameter in the code.
 
-```bash
-jupyter notebook notebook/CLIP_CIFAR10_Project.ipynb
-```
+To run the notebook locally:
 
-This will open the notebook in your browser where you can interact with the zero-shot and linear probe evaluations on CIFAR-10.
+1. **Ensure Python is Installed**: Verify you have a Python interpreter (e.g., Python 3.x) installed and configured with the dependencies listed in [Installation](#installation).
+
+2. **Select the Kernel**:
+   - Open the notebook in your editor (e.g., VS Code or Jupyter).
+   - In the top-right corner, click the kernel version (e.g., "Select Kernel").
+   - Choose the Python environment with `open_clip_torch` installed (e.g., select `open_clip` as the kernel if set up).
+
+3. **Run the Notebook**:
+   - Click "Run All" to execute all cells and perform the zero-shot and linear probe evaluations on CIFAR-10.
+   - Results will appear below each cell.
+
+**Note**: Adjust `batch_size` in the notebook if you encounter GPU memory issues.
 
 #### Python Scripts
 
-To run the various Python scripts for the evaluation tasks, you can use the python_scripts.sh file as follows:
+To run the all Python scripts for the evaluation tasks, you can use the python_scripts.sh file as follows:
 
 ```bash
-bash scripts/python_scripts.sh
+bash cifar10_evaluation/scripts/python_scripts.sh
 ```
 
 The script runs the following tasks:
 
-1.	Zero-shot evaluation:
+1.	**Zero-shot evaluation**:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/model/cifar10_zero_shot_batch.py
 ```
 
-2.	Linear probe evaluation:
+2.	**Linear probe evaluation**:
 ```bash
 CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/model/cifar10_linear_probe.py
 ```
 
-3.	Linear probe hyperparameter sweep:
+3.	**Linear probe hyperparameter sweep**:
 ```bash
 CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/model/cifar10_linear_probe_sweep.py
 ```
 
-4.	Zero-shot evaluation with text templates:
+4.	**Zero-shot evaluation with text templates**:
 ```bash
 CUDA_VISIBLE_DEVICES=0 python cifar10_evaluation/model/cifar10_zero_shot_batch_text_templates.py
 ```
 
-
-CUDA_VISIBLE_DEVICES:
+**Note**: CUDA_VISIBLE_DEVICES:
 This sets which GPU to use. Change the value (e.g., 0, 1) based on your system’s GPU configuration.
 
 ## Results
@@ -101,6 +109,8 @@ The results from this project are summarized below:
 2.	Linear probe evaluation:
     - The best L2 regularization strength λ = 0.01 with a validation accuracy of 96.79%.
 	- After retraining on the full training set (50,000 samples), the test accuracy is 96.79%.
+3.	Zero-shot accuracy using the best template "a photo with the main subject of a {class}":
+    - Top-1 accuracy: 94.14%
 
 ## Challenges and Improvements
 

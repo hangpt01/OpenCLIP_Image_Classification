@@ -25,13 +25,13 @@ text_variations = [
     ("Image description", lambda c: f"an image of a {c}"),      # 93.62%
 
     # Detailed description
-    # ("Detailed description", lambda c: f"a detailed photo of a {c} with fine details"),       92.94%
-    ("Detailed description", lambda c: f"a photo with the main subject of a {c}"),              # 94.14%
+    ("Detailed description 1", lambda c: f"a detailed photo of a {c} with fine details"),         # 92.94%
+    ("Detailed description 2", lambda c: f"a photo with the main subject of a {c}"),              # 94.14%
 
 
     # Adding adjectives
-    # ("Large description", lambda c: f"a large photo of a {c}"),       91.98%
-    # ("Small description", lambda c: f"a small photo of a {c}"),       93.06%
+    ("Large description", lambda c: f"a large photo of a {c}"),       # 91.98%
+    ("Small description", lambda c: f"a small photo of a {c}"),       # 93.06%
 
     # Sentence structure variations
     ("Sentence structure 1", lambda c: f"this is a photo of a {c}"),        # 93.39%
@@ -84,3 +84,13 @@ for variation_name, (top1, top5) in accuracies.items():
     print(f"Text variation: {variation_name}")
     print(f"  Top-1 accuracy: {top1:.2f}%")
     print(f"  Top-5 accuracy: {top5:.2f}%")
+
+# Find the best performing text variation based on top-1 accuracy
+best_variation = max(accuracies.items(), key=lambda x: x[1][0])
+best_description = next(desc for name, desc in text_variations if name == best_variation[0])
+
+print("\nBest Performing Text Description:")
+print(f"Variation Name: {best_variation[0]}")
+print(f"Text Template: {best_description('example')}")
+print(f"Top-1 Accuracy: {best_variation[1][0]:.2f}%")
+print(f"Top-5 Accuracy: {best_variation[1][1]:.2f}%")
